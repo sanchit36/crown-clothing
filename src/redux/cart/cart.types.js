@@ -3,6 +3,7 @@ const CartAtionTypes = {
   ADD_ITEM: "ADD_ITEM",
   REMOVE_ITEM: "REMOVE_ITEM",
   CLEAR_ITEM_FORM_CART: "CLEAR_ITEM_FORM_CART",
+  CLEAR_CART: "CLEAR_CART",
 };
 
 export default CartAtionTypes;
