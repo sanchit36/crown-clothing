@@ -11,6 +11,7 @@ const StripeCheckoutButton = ({ price, dispatch }) => {
     dispatch(clearCart());
     alert("Payment Successful");
   };
+
   return (
     <StripeCheckout
       label="Pay Now"
