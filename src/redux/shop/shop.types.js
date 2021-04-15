@@ -1,6 +1,7 @@
-import ShopActionTypes from "./shop.actions";
+const ShopActionTypes = {
+  FETCH_COLLECTIONS_START: "FETCH_COLLECTIONS_START",
+  FETCH_COLLECTIONS_SUCCESS: "FETCH_COLLECTIONS_SUCCESS",
+  FETCH_COLLECTIONS_FAILURE: "FETCH_COLLECTIONS_FAILURE",
+};
 
-export const updateCollections = (collectionMap) => ({
-  type: ShopActionTypes.UPDATE_COLLECTIONS,
-  payload: collectionMap,
-});
+export default ShopActionTypes;
