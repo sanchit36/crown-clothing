@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { useHistory } from "react-router";
 import { addItem } from "../../redux/cart/cart.actions";
 import {
   AddButton,
@@ -11,7 +12,9 @@ import {
 } from "./collection-item.styles";
 
 const CollectionItem = ({ item, addItem }) => {
-  const { name, price, imageUrl } = item;
+  const history = useHistory();
+  const { id, name, price, imageUrl, title } = item;
+
   return (
     <CollectionItemContainer>
       <BackgroundImage
@@ -19,6 +22,7 @@ const CollectionItem = ({ item, addItem }) => {
         style={{
           backgroundImage: `url(${imageUrl})`,
         }}
+        onClick={() => history.push(`/shop/${title}/${id}`)}
       />
       <CollectionFooterContainer className="collection-footer">
         <NameContainer className="name">{name}</NameContainer>
