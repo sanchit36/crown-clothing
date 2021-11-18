@@ -43,6 +43,15 @@ $ npm install
 
 # Start development server
 $ npm start
+
+# cd in client folder
+$ cd client
+
+# Install dependencies for react
+$ npm install
+
+# Start the react development server
+$ npm start
 ```
 
 Using Yarn:
@@ -52,5 +61,14 @@ Using Yarn:
 $ yarn
 
 # Start development server
+$ yarn start
+
+# cd in client folder
+$ cd client
+
+# Install dependencies for react
+$ yarn
+
+# Start the react development server
 $ yarn start
 ```
