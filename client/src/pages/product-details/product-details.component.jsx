@@ -1,26 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-
-import {
-  SpinnerContainer,
-  SpinnerOverlay,
-} from "../../components/with-spinner/with-spinner.styles";
+import Spinner from "../../components/spinner/spinner.component";
 
 const ProductDetailsPage = () => {
   const { collectionId, productId } = useParams();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
+    // setLoading(true);
+    // console.log(collectionId, productId);
   }, [collectionId, productId]);
 
-  if (loading) {
-    return (
-      <SpinnerOverlay>
-        <SpinnerContainer />
-      </SpinnerOverlay>
-    );
-  }
+  if (loading) return <Spinner />;
 
   return <div>Product Details</div>;
 };

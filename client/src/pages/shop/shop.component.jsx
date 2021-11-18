@@ -1,39 +1,47 @@
-import React, { useEffect } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import { Route } from "react-router";
 import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
-import { connect } from "react-redux";
-import CollectionOverviewContainer from "../../components/collection-overview/collection-overview.container";
-import CollectionPageContainer from "../collection/collection.container";
-import ProductDetailsPage from "../product-details/product-details.component";
+import { useDispatch } from "react-redux";
+import Spinner from "../../components/spinner/spinner.component";
 
-const ShopPage = ({ fetchCollectionsStart, match }) => {
+const CollectionOverviewContainer = lazy(() =>
+  import("../../components/collection-overview/collection-overview.container")
+);
+const CollectionPageContainer = lazy(() =>
+  import("../collection/collection.container")
+);
+const ProductDetailsPage = lazy(() =>
+  import("../product-details/product-details.component")
+);
+
+const ShopPage = ({ match }) => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    fetchCollectionsStart();
-  }, [fetchCollectionsStart]);
+    dispatch(fetchCollectionsStart());
+  }, [dispatch]);
 
   return (
     <div className="shop-page">
-      <Route
-        exact
-        path={`${match.path}`}
-        component={CollectionOverviewContainer}
-      />
-      <Route
-        exact
-        path={`${match.path}/:collectionId`}
-        component={CollectionPageContainer}
-      />
-      <Route
-        exact
-        path={`${match.path}/:collectionId/:productId`}
-        component={ProductDetailsPage}
-      />
+      <Suspense fallback={<Spinner />}>
+        <Route
+          exact
+          path={`${match.path}`}
+          component={CollectionOverviewContainer}
+        />
+        <Route
+          exact
+          path={`${match.path}/:collectionId`}
+          component={CollectionPageContainer}
+        />
+        <Route
+          exact
+          path={`${match.path}/:collectionId/:productId`}
+          component={ProductDetailsPage}
+        />
+      </Suspense>
     </div>
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchCollectionsStart: () => dispatch(fetchCollectionsStart()),
-});
-
-export default connect(null, mapDispatchToProps)(ShopPage);
+export default ShopPage;
